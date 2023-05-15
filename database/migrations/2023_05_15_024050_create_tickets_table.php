@@ -5,9 +5,9 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+    
+    // Run the migrations.
+     
     public function up(): void
     {
         Schema::create('tickets', function (Blueprint $table) {
@@ -19,13 +19,13 @@ return new class extends Migration
             $table->unsignedBigInteger('event_id');
             $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
 
+            $table->boolean('purchased')->default(false);
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+    // /Reverse the migrations.
+      
     public function down(): void
     {
         Schema::dropIfExists('tickets');

@@ -13,6 +13,7 @@ class Ticket extends Model
         'stadium',
         'zone',
         'event_id',
+        'purchased',
     ];
 
     public static function store($request, $id = null)

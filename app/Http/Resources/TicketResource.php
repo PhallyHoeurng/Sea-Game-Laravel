@@ -20,6 +20,7 @@ class TicketResource extends JsonResource
             'stadium' => $this->stadium,
             'zone' => $this->zone,
             'event_id' => $this->events,
+            'purchased' => $this->purchased,
         ];
     }
 }

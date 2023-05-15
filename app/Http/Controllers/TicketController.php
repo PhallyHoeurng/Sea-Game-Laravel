@@ -55,4 +55,26 @@ class TicketController extends Controller
         $ticket->delete();
         return  response()->json(['success' => true, 'delete successfuly'], 200);
     }
+
+    ///buy ticket of event 
+    public function purchase($id)
+    {
+        $ticket = Ticket::find($id);
+    
+        // Check if the ticket exists
+        if (!$ticket) {
+            return response()->json(['error' => false, 'ticket not found'], 404);
+        }
+    
+        // Check if the ticket has already been purchased
+        if ($ticket->purchased) {
+            return response()->json(['success' => true, 'Ticket has already been purchased.'], 200);
+        }
+    
+        // Purchase the ticket
+        $ticket->purchased = true;
+        $ticket->save();
+    
+        return response()->json(['success' => true, 'successfully.'], 200);
+    }
 }

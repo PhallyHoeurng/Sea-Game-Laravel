@@ -60,3 +60,6 @@ Route::post('/ticket', [TicketController::class , 'store']);
 Route::get('/ticket/{id}', [TicketController::class , 'show']);
 Route::put('/ticket/{id}', [TicketController::class , 'update']);
 Route::delete('/ticket/{id}', [TicketController::class , 'destroy']);
+
+//but ticket 
+Route::post('/tickets/{id}', [TicketController::class, 'purchase']);
