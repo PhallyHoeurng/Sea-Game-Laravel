@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Http\Resources\TicketResource;
 use App\Models\Ticket;
+use GuzzleHttp\Psr7\Request as Psr7Request;
 use Illuminate\Http\Request;
-
 class TicketController extends Controller
 {
      /**
@@ -14,6 +13,7 @@ class TicketController extends Controller
     public function index()
     {
         $ticket = Ticket::all();
+
         return response()->json(['success' => true, 'data' => $ticket],200);
     }
 
@@ -22,9 +22,9 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        // dd(456);
-        $event = Ticket::store($request);
-        return  response()->json(['success' => true, 'data' => $event], 201);
+        $ticket = Ticket::store($request);
+
+        return  response()->json(['success' => true, 'data' => $ticket], 201);
     }
 
     /**
@@ -34,15 +34,17 @@ class TicketController extends Controller
     {
         $ticket = Ticket::find($id);
         $ticket = new TicketResource($ticket);
+
         return  response()->json(['success' => true, 'data' =>  $ticket], 200);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(string $id)
+    public function update(Request $id)
     {
-        $ticket = Ticket::store( $id);
+        $ticket = Ticket::store($id);
+
         return  response()->json(['success' => true, 'data' => $ticket], 200);
     }
 
@@ -53,10 +55,11 @@ class TicketController extends Controller
     {
         $ticket = Ticket::find($id);
         $ticket->delete();
+
         return  response()->json(['success' => true, 'delete successfuly'], 200);
     }
 
-    ///buy ticket of event 
+    ///buy ticket specified resource from storage.
     public function purchase($id)
     {
         $ticket = Ticket::find($id);
@@ -75,6 +78,6 @@ class TicketController extends Controller
         $ticket->purchased = true;
         $ticket->save();
     
-        return response()->json(['success' => true, 'successfully.'], 200);
+        return response()->json(['successfully' => true,'data' => $ticket],200);
     }
 }

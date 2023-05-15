@@ -21,9 +21,11 @@ class Team_Event extends Model
     public function teams(){
         return $this->hasMany(Team::class);
     }
+
     public function events(){
         return $this->hasMany(Event::class);
     }
+    
     public static function store($request, $id = null)
     {
         $team_event = $request->only(['event_id', 'team_id']);

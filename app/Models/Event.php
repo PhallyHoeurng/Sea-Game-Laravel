@@ -25,6 +25,7 @@ class Event extends Model
         $event = self::updateOrCreate(["id" => $id], $event);
         return $event;
     }
+    
     public function user(){
         return $this->belongsTo(User::class);
     }

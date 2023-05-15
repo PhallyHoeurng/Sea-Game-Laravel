@@ -6,7 +6,6 @@ use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
-
 class UserController extends Controller
 {
     /**
@@ -16,6 +15,7 @@ class UserController extends Controller
     {
         $user = User::all();
         $user = UserResource ::collection($user);
+        
         return response()->json(['success' => true, 'data' => $user],200);
     }
 
@@ -24,8 +24,8 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        // dd(5678);
         $user = User::store($request);
+
         return  response()->json(['success' => true, 'data' => $user], 201);
     }
 
@@ -36,6 +36,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $user = new UserResource($user);
+
         return  response()->json(['success' => true, 'data' =>  $user], 200);
     }
 
@@ -45,6 +46,7 @@ class UserController extends Controller
     public function update(UserRequest $request, string $id)
     {
         $user = User::store($request, $id);
+
         return  response()->json(['success' => true, 'data' => $user], 200);
     }
 
@@ -55,6 +57,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $user->delete();
+
         return  response()->json(['success' => true, 'delete successfuly'], 200);
     }
 }

@@ -20,6 +20,7 @@ class TeamController extends Controller
     {
         $team = Team::all();
         $team = TeamResource ::collection($team);
+        
         return response()->json(['success' => true, 'data' => $team],200);
     }
 
@@ -29,6 +30,7 @@ class TeamController extends Controller
     public function store(TeamRequest $request)
     {
         $team = Team::store($request);
+
         return  response()->json(['success' => true, 'data' => $team], 201);
     }
 
@@ -39,6 +41,7 @@ class TeamController extends Controller
     {
         $team = Team::find($id);
         $team = new TeamResource($team);
+
         return  response()->json(['success' => true, 'data' =>  $team], 200);
     }
 
@@ -48,6 +51,7 @@ class TeamController extends Controller
     public function update(TeamRequest $request, string $id)
     {
         $team = Team::store($request, $id);
+
         return  response()->json(['success' => true, 'data' => $team], 200);
     }
 
@@ -58,6 +62,7 @@ class TeamController extends Controller
     {
         $team = Team::find($id);
         $team->delete();
+
         return  response()->json(['success' => true, 'delete successfuly'], 200);
     }
 }

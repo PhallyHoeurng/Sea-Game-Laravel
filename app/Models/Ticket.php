@@ -18,8 +18,9 @@ class Ticket extends Model
 
     public static function store($request, $id = null)
     {
-        $ticket = $request->only(['price','stadium','zone', 'event_id']);
+        $ticket = $request->only(['price','stadium','zone', 'event_id','purchased']);
         $ticket = self::updateOrCreate(["id" => $id], $ticket);
+
         return $ticket;
     }
 

@@ -18,8 +18,8 @@ class TeamResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'members' => $this->members,
-            'user_id' => $this->user ?? null,
-            'events' => $this->events ?? null,
+            'user_id' => $this->user,
+            'events' => $this->events,
         ];
     }
 }
