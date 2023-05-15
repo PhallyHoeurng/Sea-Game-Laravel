@@ -19,8 +19,12 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'age',
+        'phone_number',
         'email',
         'password',
+        'events',
+        'teams'
     ];
 
     /**
@@ -41,4 +45,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function events(){
+        return $this->hasMany(Event::class);
+    }
+    public function teams(){
+        return $this->hasMany(Team::class);
+    }
+
+    public static function store($request, $id = null)
+    {
+        $user = $request->only(['name', 'age', 'phone_number', 'email', 'password','events','teams']);
+        $user = self::updateOrCreate(["id" => $id], $user);
+        return $user;
+    }
+
 }

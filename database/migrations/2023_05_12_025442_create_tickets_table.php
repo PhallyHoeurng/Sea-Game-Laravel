@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
 return new class extends Migration
 {
     /**
@@ -13,13 +12,13 @@ return new class extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
-            $table->boolean("payment")->default(0);
-    
-            $table->unsignedBigInteger('schedule_id');
-            $table->foreign('schedule_id')->references('id')->on('schedules')->onDelete('cascade');
-            
-            $table->unsignedBigInteger('zone_id');
-            $table->foreign('zone_id')->references('id')->on('zones')->onDelete('cascade');
+            $table->integer("price");
+            $table->string("stadium");
+            $table->string("zone");
+
+            $table->unsignedBigInteger('event_id');
+            $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
