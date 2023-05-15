@@ -22,8 +22,10 @@ class Event extends Model
     public static function store($request, $id = null)
     {
         $event = $request->only(['event_type', 'date', 'start_time', 'end_time', 'description',"user_id"]);
-        $event = self::updateOrCreate(["id" => $id], $event);
-        return $event;
+        $events = self::updateOrCreate(["id" => $id], $event);
+        $team = request('teams');
+        $events->teams()->sync($team);
+        return $events;
     }
     
     public function user(){
