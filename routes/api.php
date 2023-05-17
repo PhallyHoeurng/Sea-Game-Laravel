@@ -62,4 +62,4 @@ Route::put('/ticket/{id}', [TicketController::class , 'update']);
 Route::delete('/ticket/{id}', [TicketController::class , 'destroy']);
 
 //but ticket 
-Route::post('/tickets/{id}', [TicketController::class, 'purchase']);
+Route::post('/ticket/{id}', [TicketController::class, 'purchase']);
